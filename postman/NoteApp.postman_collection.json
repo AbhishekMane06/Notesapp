@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "95457490-8544-4bee-9951-3184396ca438",
+		"name": "NoteApp - Backend (Auth + Note)",
+		"description": "Postman collection for the provided backend. Routes match the code you shared.\nAuth: /api/auth (register, login, verify) \nNotes: /api/note (add, get all, update, delete)\nAuth uses JWT in Authorization: Bearer {{jwt}}",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50578681",
+		"_collection_link": "https://abhishekmane467-2921790.postman.co/workspace/Abhishek-Mane's-Workspace~b4e8cc21-e571-4814-879c-889b6abe2879/collection/50578681-95457490-8544-4bee-9951-3184396ca438?action=share&source=collection_link&creator=50578681"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register (POST /api/auth/register)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test@example.com\",\n  \"password\": \"Password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login (POST /api/auth/login)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {",
+									"  const json = pm.response.json();",
+									"  if (json && json.token) {",
+									"    pm.environment.set('jwt', json.token);",
+									"    console.log('Saved jwt to environment variable: jwt');",
+									"  } else if (json && json.data && json.data.token) {",
+									"    pm.environment.set('jwt', json.data.token);",
+									"    console.log('Saved jwt to environment variable: jwt');",
+									"  }",
+									"} catch (e) { console.log('No JSON response or token not present'); }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"Password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Token (GET /api/auth/verify)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/auth/verify",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"verify"
+							]
+						},
+						"description": "Verifies token using the middleware and returns the user object from middleware."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notes (Protected - /api/note)",
+			"item": [
+				{
+					"name": "Create Note (POST /api/note/add)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"My first note\",\n  \"description\": \"This is the backend note description\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/note/add",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Notes (GET /api/note/)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try {\r",
+									"  const json = pm.response.json();\r",
+									"  if (json && json.notes && json.notes.length) {\r",
+									"    pm.environment.set(\"noteId\", json.notes[0]._id);\r",
+									"    console.log(\"noteId set to\", json.notes[0]._id);\r",
+									"  } else {\r",
+									"    pm.environment.unset(\"noteId\");\r",
+									"    console.log(\"No notes found\");\r",
+									"  }\r",
+									"} catch (e) {\r",
+									"  console.log(\"Could not parse response\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/note",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"note"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Note (PUT /api/note/:id)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Updated title\",\n  \"description\": \"Updated description\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/note/{{noteId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"{{noteId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Note (DELETE /api/note/:id)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/note/{{noteId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"{{noteId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Utilities",
+			"item": [
+				{
+					"name": "Protected route test (GET /api/protected) - optional",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/protected",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"protected"
+							]
+						},
+						"description": "Optional endpoint to quickly confirm middleware is working (if you add such a route)."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5000"
+		},
+		{
+			"key": "jwt",
+			"value": ""
+		},
+		{
+			"key": "noteId",
+			"value": ""
+		}
+	]
+}
