@@ -1,4 +1,5 @@
 import express from "express";
+import middleware from "./middleware/middleware.js";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectTOMongoDB from "./db/db.js";
@@ -13,7 +14,11 @@ app.use(express.json());
 
 app.use("/api/auth", authRouter);
 app.use("/api/note", noteRouter);
-
+app.get("/api/protected", middleware, (req, res) => {
+  return res
+    .status(200)
+    .json({ success: true, message: "Protected route OK", user: req.user });
+});
 
 const PORT = process.env.PORT || 5000;
 
