@@ -25,7 +25,7 @@
 
 ## 🌐 Live Demo
 
-*Frontend:* [Deployed Link Here]  
+*Frontend:* [https://notesapp-4owq.onrender.com]  
 *Backend API:* [https://notesapp-server-41bd.onrender.com]  
 *API Documentation:* [Postman Collection](#-api-documentation)
 
@@ -482,6 +482,7 @@ Note.index({ userId: 1, createdAt: -1 });
 - *Monitoring* - Application Performance Monitoring (APM)
 
 #### 4. *Database Optimization*
+```
 javascript
 // Implement pagination
 GET /notes?page=1&limit=20
@@ -494,7 +495,7 @@ Note.aggregate([
   { $match: { userId: ObjectId(userId) } },
   { $sort: { isPinned: -1, createdAt: -1 } }
 ]);
-
+```
 
 #### 5. *Security Enhancements*
 - *Rate Limiting* - Prevent brute force attacks
