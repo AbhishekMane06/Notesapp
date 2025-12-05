@@ -1,5 +1,5 @@
 import Home from "./pages/Home";
-import Signup from "./pages/signup";
+import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
