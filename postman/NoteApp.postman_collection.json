@@ -1,11 +1,11 @@
 {
 	"info": {
-		"_postman_id": "95457490-8544-4bee-9951-3184396ca438",
-		"name": "NoteApp - Backend (Auth + Note)",
+		"_postman_id": "d6d10550-d603-4905-b2ed-dafa1c198aef",
+		"name": "NoteApp - Backend (Auth + Note) Copy",
 		"description": "Postman collection for the provided backend. Routes match the code you shared.\nAuth: /api/auth (register, login, verify) \nNotes: /api/note (add, get all, update, delete)\nAuth uses JWT in Authorization: Bearer {{jwt}}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "50578681",
-		"_collection_link": "https://abhishekmane467-2921790.postman.co/workspace/Abhishek-Mane's-Workspace~b4e8cc21-e571-4814-879c-889b6abe2879/collection/50578681-95457490-8544-4bee-9951-3184396ca438?action=share&source=collection_link&creator=50578681"
+		"_collection_link": "https://abhishekmane467-2921790.postman.co/workspace/Abhishek-Mane's-Workspace~b4e8cc21-e571-4814-879c-889b6abe2879/collection/50578681-d6d10550-d603-4905-b2ed-dafa1c198aef?action=share&source=collection_link&creator=50578681"
 	},
 	"item": [
 		{
@@ -288,7 +288,7 @@
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "http://localhost:5000"
+			"value": "https://notesapp-server-41bd.onrender.com"
 		},
 		{
 			"key": "jwt",
