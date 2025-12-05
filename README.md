@@ -1,4 +1,4 @@
-# NoteSphere 📝
+# NotesApp 📝
 ### Scalable Full-Stack Note-Taking Application with JWT Authentication
 
 > A modern, secure, and scalable web application built for the *Frontend Developer Intern Assignment*. This project demonstrates proficiency in building production-ready applications with React, Node.js, MongoDB, and industry-standard security practices.
@@ -558,8 +558,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - GitHub: [@AbhishekMane06](https://github.com/AbhishekMane06)
 - Email: [abhishekmane467@gmail.com](mailto:abhishekmane467@gmail.com)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-
 ---
 
 
