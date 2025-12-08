@@ -47,7 +47,7 @@ const Header = ({ setQuery }) => {
                 Login
               </Link>
               <Link
-                to="/signup"
+                to="/register"
                 className="px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:from-indigo-600 hover:to-purple-600 transition font-semibold"
               >
                 Signup

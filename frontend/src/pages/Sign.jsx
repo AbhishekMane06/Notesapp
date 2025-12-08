@@ -1,9 +1,10 @@
+import React from 'react'
 import axios from "axios";
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const Signup = () => {
+const Sign = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +26,9 @@ const Signup = () => {
       toast.error(error.response?.data?.message || "Signup failed");
     }
   };
+
   return (
+    <>
     <div className="w-screen min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f172a] via-[#0b1222] to-[#0a0f1a] px-4 py-12">
       <div className="w-full max-w-md bg-white/10 backdrop-blur-2xl border border-white/20 rounded-2xl shadow-xl p-8">
         <h2 className="text-3xl font-extrabold text-center text-white mb-6 tracking-tight">
@@ -111,7 +114,10 @@ const Signup = () => {
         </form>
       </div>
     </div>
-  );
-};
+    </>
+  )
+}
 
-export default Signup;
+
+export default Sign;
+
