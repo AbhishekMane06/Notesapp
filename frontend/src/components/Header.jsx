@@ -23,7 +23,7 @@ const Header = ({ setQuery }) => {
             📝
           </span>
           <div>
-            <div className="text-lg font-extrabold text-white">NoteApp</div>
+            <div className="text-lg font-extrabold text-white">NoteSphere</div>
             <div className="text-xs text-white/60">Capture ideas fast</div>
           </div>
         </Link>
